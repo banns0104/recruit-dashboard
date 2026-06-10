@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>서현일 · 채용 레이더 — Job Radar 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#FBFAF7; --paper-2:#F4F2EB; --paper-3:#ECE8DD; --card:#FFFFFF;
+  --ink:#1B1A16; --body:#46423A; --sub:#6E695C; --muted:#938C7B; --quiet:#B6AF9D;
+  --line:#E6E1D4; --line-2:#F0ECE2;
+  --accent:#1E5A40; --accent-deep:#143E2C; --accent-soft:#E5EAE1; --accent-line:#BFCCC0;
+  --amber:#9A7B2E; --amber-soft:#F1EAD7;
+  --serif:'Newsreader','Noto Serif KR',Georgia,serif;
+  --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,sans-serif;
+  --sh-2:0 1px 2px rgba(27,26,22,0.05),0 8px 28px rgba(27,26,22,0.05);
+  --sh-3:0 2px 4px rgba(27,26,22,0.06),0 18px 50px rgba(27,26,22,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--sans);font-size:16px;line-height:1.6;letter-spacing:-0.005em;word-break:keep-all;color:var(--body);background:var(--paper-2);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.tnum{font-variant-numeric:tabular-nums lining-nums;}
+
+/* Toolbar */
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(244,242,235,0.92);backdrop-filter:saturate(120%) blur(10px);border-bottom:1px solid var(--line);}
+.toolbar-inner{max-width:1100px;margin:0 auto;padding:13px 28px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;}
+.crumb{font-family:var(--serif);font-size:16px;font-weight:560;color:var(--ink);}
+.crumb .muted{font-style:italic;color:var(--muted);font-weight:420;margin-left:6px;font-size:14px;}
+.crumb .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:9px;vertical-align:middle;}
+.updated{font-family:var(--sans);font-size:12px;color:var(--sub);font-weight:500;}
+.updated b{color:var(--ink);font-weight:700;}
+
+.wrap{max-width:1100px;margin:30px auto 90px;padding:0 28px;}
+
+/* Hero */
+.hero{border-bottom:2px solid var(--ink);padding-bottom:26px;margin-bottom:26px;}
+.eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;}
+.eyebrow .tick{width:22px;height:1px;background:currentColor;}
+.hero h1{font-family:var(--serif);font-size:42px;font-weight:560;color:var(--ink);letter-spacing:-0.024em;line-height:1.05;}
+.hero h1 .en{font-style:italic;font-weight:420;color:var(--quiet);font-size:0.5em;margin-left:10px;}
+.hero .sub{font-family:var(--serif);font-size:16px;color:var(--body);margin-top:13px;line-height:1.55;}
+.hero .sub b{color:var(--ink);font-weight:600;}
+.chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px;}
+.chip{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.chip b{color:var(--accent);font-weight:700;}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--card);box-shadow:var(--sh-2);margin-bottom:26px;}
+.kpi-cell{padding:20px 24px;border-right:1px solid var(--line);}
+.kpi-cell:last-child{border-right:none;}
+.kpi-cell .num{font-family:var(--serif);font-size:34px;font-weight:540;color:var(--ink);letter-spacing:-0.022em;line-height:1;}
+.kpi-cell.feat .num{color:var(--accent);}
+.kpi-cell .label{font-family:var(--sans);font-size:12px;color:var(--sub);margin-top:8px;font-weight:600;}
+
+/* Controls */
+.controls{position:sticky;top:55px;z-index:40;background:var(--paper-2);padding:14px 0 12px;margin-bottom:8px;border-bottom:1px solid var(--line);}
+.controls-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.search{flex:1;min-width:200px;font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;outline:none;}
+.search:focus{border-color:var(--accent);}
+.sel{font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;outline:none;cursor:pointer;}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px;}
+.pill{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .12s;user-select:none;}
+.pill:hover{border-color:var(--accent-line);}
+.pill.on{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.pill.tier-on{background:var(--accent);border-color:var(--accent);color:#fff;}
+.toggle{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;user-select:none;padding:6px 0;}
+.toggle input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer;}
+
+.count-line{font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:500;margin:14px 2px 12px;}
+.count-line b{color:var(--ink);font-weight:700;}
+
+/* Job card */
+.list{display:flex;flex-direction:column;gap:12px;}
+.job{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;box-shadow:var(--sh-2);display:grid;grid-template-columns:72px 1fr;gap:20px;transition:box-shadow .15s,border-color .15s;position:relative;}
+.job:hover{box-shadow:var(--sh-3);border-color:var(--accent-line);}
+.job.applied{opacity:0.62;}
+.job.applied::after{content:"지원 완료";position:absolute;top:0;right:0;background:var(--accent);color:#fff;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;border-radius:0 9px 0 9px;}
+
+/* score block */
+.score{text-align:center;border-right:1px solid var(--line-2);padding-right:18px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;}
+.score .val{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1;color:var(--accent);letter-spacing:-0.02em;}
+.score .tier{font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:0.06em;margin-top:7px;padding:3px 9px;border-radius:999px;}
+.tier-최상{background:var(--accent);color:#fff;}
+.tier-상{background:var(--accent-soft);color:var(--accent-deep);}
+.tier-중{background:var(--amber-soft);color:var(--amber);}
+.tier-하{background:var(--paper-3);color:var(--muted);}
+.score .val.t-중{color:var(--amber);}
+.score .val.t-하{color:var(--muted);}
+
+.body-col{min-width:0;}
+.j-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+.j-co{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:0.02em;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.badge-new{background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:0.05em;padding:2px 7px;border-radius:4px;}
+.badge-lv{background:var(--paper-3);color:var(--sub);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:0.02em;}
+.j-title{font-family:var(--serif);font-size:20px;font-weight:580;color:var(--ink);letter-spacing:-0.014em;line-height:1.25;margin-top:5px;}
+.j-reasons{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:5px;}
+.j-reasons li{position:relative;padding-left:16px;font-family:var(--sans);font-size:13px;color:var(--body);line-height:1.5;}
+.j-reasons li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--accent);}
+.j-meta{margin-top:13px;display:flex;flex-wrap:wrap;gap:0;font-family:var(--sans);font-size:11.5px;color:var(--muted);font-weight:600;}
+.j-meta span{padding-right:12px;margin-right:12px;border-right:1px solid var(--line);}
+.j-meta span:last-child{border-right:none;}
+.j-meta b{color:var(--sub);font-weight:700;}
+.j-foot{margin-top:15px;padding-top:14px;border-top:1px solid var(--line-2);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.btn{font-family:var(--sans);font-size:13px;font-weight:600;border-radius:8px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);transition:all .12s;}
+.btn:hover{border-color:var(--accent);}
+.btn.go{background:var(--accent);border-color:var(--accent);color:#fff;}
+.btn.go:hover{background:var(--accent-deep);}
+.applied-toggle{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;user-select:none;}
+.applied-toggle input{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;}
+.note-btn{font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:600;cursor:pointer;border:none;background:none;text-decoration:underline;text-underline-offset:3px;}
+.note-area{display:none;margin-top:10px;width:100%;font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 12px;resize:vertical;min-height:52px;outline:none;}
+.note-area.open{display:block;}
+.note-area:focus{border-color:var(--accent);}
+
+.empty{text-align:center;padding:60px 20px;font-family:var(--serif);font-size:17px;color:var(--muted);}
+.colophon{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--sans);font-size:11.5px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;}
+
+@media (max-width:720px){
+  .wrap{padding:0 16px;}
+  .toolbar-inner{padding:11px 16px;}
+  .hero h1{font-size:30px;}
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .kpi-cell:nth-child(2){border-right:none;}
+  .kpi-cell:nth-child(1),.kpi-cell:nth-child(2){border-bottom:1px solid var(--line);}
+  .controls{top:50px;}
+  .job{grid-template-columns:56px 1fr;gap:14px;padding:18px 16px;}
+  .score .val{font-size:25px;}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="crumb"><span class="dot"></span>채용 레이더 <span class="muted">Job Radar 2026</span></div>
+    <div class="updated">최근 수집 <b id="lastCollected">—</b> · 매일 자동 갱신</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow"><span class="tick"></span>서현일 · Hyunil Seo · 7년차 PM · PO · CPO</div>
+    <h1>채용 레이더 <span class="en">Job Radar</span></h1>
+    <div class="sub">프로필 기반으로 <b>지원 가능한 시니어 PM·PO·CPO·Head 공고</b>를 매일 자동 수집하고, 적합도와 지원 여부를 한눈에 추적합니다.</div>
+    <div class="chips">
+      <span class="chip">타겟 <b>PM·PO·CPO·Head·VP</b></span>
+      <span class="chip">도메인 <b>O2O·슈퍼앱·커머스·마켓플레이스·핀테크·AI</b></span>
+      <span class="chip">기준 <b>100명+ 검증기업</b></span>
+      <span class="chip">필터 <b>요구경력 8년+ 제외</b></span>
+    </div>
+  </header>
+
+  <div class="kpi-grid">
+    <div class="kpi-cell feat"><div class="num tnum" id="kpiTotal">0</div><div class="label">수집된 공고</div></div>
+    <div class="kpi-cell feat"><div class="num tnum" id="kpiTop">0</div><div class="label">최상·상 핏</div></div>
+    <div class="kpi-cell"><div class="num tnum" id="kpiNew">0</div><div class="label">오늘 신규</div></div>
+    <div class="kpi-cell"><div class="num tnum" id="kpiApplied">0</div><div class="label">지원 완료</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="controls-row">
+      <input class="search" id="search" type="text" placeholder="회사·직무·도메인 검색…" />
+      <select class="sel" id="sortBy">
+        <option value="fit">정렬 · 적합도순</option>
+        <option value="new">정렬 · 신규순</option>
+        <option value="company">정렬 · 회사명순</option>
+      </select>
+    </div>
+    <div class="pills" id="tierPills">
+      <span class="pill tier" data-tier="최상">최상 핏</span>
+      <span class="pill tier" data-tier="상">상</span>
+      <span class="pill tier" data-tier="중">중</span>
+      <span class="pill tier" data-tier="하">하</span>
+    </div>
+    <div class="pills" id="srcPills" style="margin-top:7px;"></div>
+    <div class="pills" style="margin-top:9px;gap:18px;">
+      <label class="toggle"><input type="checkbox" id="onlyNew"> 신규만 보기</label>
+      <label class="toggle"><input type="checkbox" id="hideApplied"> 지원한 공고 숨기기</label>
+    </div>
+  </div>
+
+  <div class="count-line" id="countLine"></div>
+  <div class="list" id="list"></div>
+
+  <div class="colophon">
+    <span>© Hyunil Seo · Job Radar 2026</span>
+    <span>적합도는 보유 경력·도메인 매칭 기반 추정치</span>
+    <span>지원 여부·메모는 이 브라우저에 저장됩니다</span>
+  </div>
+
+</div>
+
+<script id="jobs-data" type="application/json">
+{"meta":{"last_collected":"2026-06-10"},"jobs":[
+{"id":"daangn-pm-2026","company":"당근 (당근마켓)","title":"Product Manager","level":"PM/PO","scale":"유니콘","source":"회사 채용페이지","url":"https://about.daangn.com/jobs/product-manager/","location":"서울","exp":"4년 이상","domains":["O2O","마켓플레이스","지역 슈퍼앱"],"fit_score":93,"fit_tier":"최상","fit_reasons":["지역 기반 O2O 마켓플레이스 — 어바웃피싱·가다 O2O 경험 직결","중고거래 = 중고장터 도메인 직접 경험","유니콘·100명+ 충족"],"is_new":true},
+{"id":"bucketplace-senior-po","company":"오늘의집 (버킷플레이스)","title":"Senior Product Owner / Commerce Platform PO","level":"PO(시니어)","scale":"유니콘","source":"회사 채용페이지","url":"https://www.bucketplace.com/careers/","location":"서울","exp":"시니어","domains":["커머스","라이프스타일 슈퍼앱","검색·추천"],"fit_score":90,"fit_tier":"최상","fit_reasons":["커머스 슈퍼앱 — 9개 도메인 총괄 경험과 정합","검색·추천 PO = AI 추천 빌드 경험 연결","유니콘·100명+ 충족"],"is_new":true},
+{"id":"joongna-pm-5y","company":"중고나라","title":"프로덕트 매니저 (PM, 5년 이상)","level":"PM(시니어)","scale":"중견·투자유치","source":"원티드","url":"https://www.wanted.co.kr/wd/260625","location":"서울 강남구","exp":"5년 이상","domains":["중고 마켓플레이스","플랫폼"],"fit_score":88,"fit_tier":"최상","fit_reasons":["중고거래 마켓플레이스 = 어바웃피싱 중고장터 도메인 직접 경험","플랫폼 PM 5년+ 요건 충족","거래·정산 이해 강점"],"is_new":true},
+{"id":"ably-po","company":"에이블리 (에이블리코퍼레이션)","title":"프로덕트 오너 (PO)","level":"PO","scale":"유니콘","source":"원티드","url":"https://www.wanted.co.kr/wd/171712","location":"서울","exp":"경력","domains":["커머스","스타일 플랫폼","AI 개인화"],"fit_score":86,"fit_tier":"최상","fit_reasons":["스타일 커머스 플랫폼 — 커머스 그로스 경험 정합","AI 개인화 추천 = AI 빌드 경험","유니콘·100명+ 충족"],"is_new":true},
+{"id":"musinsa-community-pm","company":"무신사","title":"신규 커뮤니티 서비스 프로덕트 매니저","level":"PM(시니어)","scale":"대기업","source":"원티드","url":"https://www.wanted.co.kr/wd/95940","location":"서울","exp":"5년 이상","domains":["커머스","커뮤니티"],"fit_score":85,"fit_tier":"최상","fit_reasons":["커머스+커뮤니티 = 슈퍼앱 9개 도메인(쇼핑·커뮤니티) 경험 정합","신규 서비스 0→1 기획","대기업·100명+ 충족"],"is_new":true},
+{"id":"yanolja-product-leader","company":"야놀자","title":"Global Leader, Product Management (Enterprise Solution)","level":"Head/Leader","scale":"유니콘","source":"잡코리아","url":"https://www.jobkorea.co.kr/Recruit/GI_Read/48371406","location":"서울","exp":"리더급","domains":["O2O","여행 슈퍼앱","B2B 솔루션"],"fit_score":84,"fit_tier":"상","fit_reasons":["O2O 여행 슈퍼앱 — O2O·슈퍼앱 도메인 정합","Product 리더 직책 = 총괄 경험 매칭","유니콘·100명+ 충족"],"is_new":true},
+{"id":"rapportlabs-queenit-po","company":"라포랩스 (퀸잇)","title":"프로덕트 오너 (PO)","level":"PO","scale":"시리즈C·투자유치","source":"원티드","url":"https://www.wanted.co.kr/wd/212795","location":"서울 강남구","exp":"3년 이상","domains":["커머스","모바일 이커머스"],"fit_score":82,"fit_tier":"상","fit_reasons":["4050 패션 이커머스 — 시니어 타겟 커머스, 어바웃피싱 50대 페르소나 경험 정합","모바일 이커머스 PO","투자유치·100명+ 충족"],"is_new":true},
+{"id":"banksalad-pm","company":"뱅크샐러드","title":"프로덕트 매니저 (Product Manager)","level":"PM","scale":"유니콘급·투자유치","source":"원티드","url":"https://www.wanted.co.kr/wd/198779","location":"서울","exp":"경력","domains":["핀테크","데이터"],"fit_score":81,"fit_tier":"상","fit_reasons":["핀테크 — P2P·결제·정산 경험 정합","데이터 기반 기회 발굴 = 데이터 그로스 강점","투자유치·100명+ 충족"],"is_new":true},
+{"id":"tossinvest-2026-product","company":"토스증권 (비바리퍼블리카)","title":"2026 대규모 채용 — 프로덕트 직군","level":"PM/PO","scale":"대기업·유니콘","source":"회사 채용페이지","url":"https://recruit.tossinvest.com/2026-03","location":"서울","exp":"경력","domains":["핀테크","증권","슈퍼앱"],"fit_score":80,"fit_tier":"상","fit_reasons":["토스 핀테크 슈퍼앱 — 핀테크·슈퍼앱 도메인 정합","프로덕트 전 직군 대규모 채용","대기업·100명+ 충족"],"is_new":true},
+{"id":"kurly-product","company":"컬리 (마켓컬리)","title":"프로덕트 기획 / 리드","level":"PM/리드","scale":"대기업·상장","source":"회사 채용페이지","url":"https://kurly.career.greetinghr.com/ko/home","location":"서울 강남구","exp":"경력","domains":["커머스","물류"],"fit_score":79,"fit_tier":"상","fit_reasons":["신선식품 커머스 — 커머스 도메인 정합","임직원 2,774명 대규모 조직","상장·100명+ 충족"],"is_new":true},
+{"id":"coupang-pm","company":"쿠팡 (Coupang)","title":"Product Manager","level":"PM","scale":"대기업","source":"회사 채용페이지","url":"https://www.coupang.jobs/en/teams/product-management/","location":"서울","exp":"경력","domains":["커머스","물류","플랫폼"],"fit_score":78,"fit_tier":"상","fit_reasons":["이커머스 대기업 — 커머스 도메인 정합","다양한 PM 포지션 상시 채용","대기업·100명+ 충족"],"is_new":true},
+{"id":"finda-product","company":"핀다 (Finda)","title":"프로덕트 (시니어)","level":"PM/PO","scale":"시리즈C·투자유치","source":"리멤버","url":"https://career.rememberapp.co.kr/","location":"서울","exp":"시니어","domains":["핀테크","대출"],"fit_score":76,"fit_tier":"상","fit_reasons":["대출 핀테크 — 한화 EBC×피플펀드 P2P 대출 경험 정합","투자유치·100명+ 충족"],"is_new":true},
+{"id":"sendbird-head-product-kr","company":"센드버드 (Sendbird)","title":"Head of Product, Korea","level":"Head of Product","scale":"시리즈B+·글로벌","source":"링크드인","url":"https://jobs.techstars.com/companies/sendbird/jobs/65955178-head-of-product-korea","location":"서울","exp":"총괄급(경력 미명시)","domains":["AI","B2B SaaS","메시징"],"fit_score":75,"fit_tier":"상","fit_reasons":["AI Agent 제품 총괄 = AI 빌드 경험 + Head 직책 매칭","글로벌 B2B(자사 경험은 B2C/O2O 중심) 적응 필요","100명+ 충족"],"is_new":true},
+{"id":"wantedlab-po","company":"원티드랩","title":"프로덕트 오너 (PO)","level":"PO","scale":"상장","source":"원티드","url":"https://www.wanted.co.kr/wd/137744","location":"서울 송파구","exp":"4년 이상","domains":["HR테크","플랫폼"],"fit_score":68,"fit_tier":"중","fit_reasons":["B2C 웹·앱 플랫폼 PO — 플랫폼 기획 경험 정합","HR테크는 인접 도메인","상장·100명+ 충족"],"is_new":true},
+{"id":"inflab-pm","company":"인프랩 (인프런)","title":"프로덕트 매니저 (PM)","level":"PM","scale":"시리즈B·투자유치","source":"원티드","url":"https://www.wanted.co.kr/wd/52530","location":"경기 성남","exp":"경력","domains":["에듀테크","커머스(강의)"],"fit_score":66,"fit_tier":"중","fit_reasons":["지식 커머스 플랫폼 — 커머스 인접","콘텐츠·커뮤니티 운영 경험 활용 가능","투자유치·100명+ 충족"],"is_new":true},
+{"id":"makinarocks-pm","company":"마키나락스 (MakinaRocks)","title":"프로덕트 매니저 (PM)","level":"PM","scale":"시리즈B·투자유치","source":"원티드","url":"https://www.wanted.co.kr/wd/230550","location":"서울 서초구","exp":"3년 이상","domains":["AI","ML/LLM","산업 B2B"],"fit_score":64,"fit_tier":"하","fit_reasons":["AI/LLM 제품 = AI 빌드 경험 정합","단, 산업 B2B(자사 B2C/O2O 중심)로 도메인 거리 있음","투자유치·100명+ 충족"],"is_new":true}
+]}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var STORE_KEY = "jobradar_state_v1";
+  var raw = JSON.parse(document.getElementById("jobs-data").textContent);
+  var JOBS = raw.jobs || [];
+  document.getElementById("lastCollected").textContent = (raw.meta && raw.meta.last_collected) || "—";
+
+  // ---- persisted state (applied / notes) ----
+  function loadState(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {applied:{},notes:{}}; }catch(e){ return {applied:{},notes:{}}; } }
+  function saveState(s){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){} }
+  var state = loadState();
+
+  // ---- filter state ----
+  var filters = { q:"", tiers:new Set(), sources:new Set(), onlyNew:false, hideApplied:false, sort:"fit" };
+
+  // build source pills
+  var allSources = Array.from(new Set(JOBS.map(function(j){return j.source;})));
+  var srcWrap = document.getElementById("srcPills");
+  allSources.forEach(function(s){
+    var el = document.createElement("span");
+    el.className = "pill src"; el.dataset.src = s; el.textContent = s;
+    el.onclick = function(){ toggleSet(filters.sources, s, el, "on"); render(); };
+    srcWrap.appendChild(el);
+  });
+
+  function toggleSet(set, key, el, cls){ if(set.has(key)){set.delete(key); el.classList.remove(cls);} else {set.add(key); el.classList.add(cls);} }
+
+  // tier pills
+  document.querySelectorAll("#tierPills .pill").forEach(function(el){
+    el.onclick = function(){ toggleSet(filters.tiers, el.dataset.tier, el, "tier-on"); render(); };
+  });
+  document.getElementById("search").oninput = function(e){ filters.q = e.target.value.trim().toLowerCase(); render(); };
+  document.getElementById("sortBy").onchange = function(e){ filters.sort = e.target.value; render(); };
+  document.getElementById("onlyNew").onchange = function(e){ filters.onlyNew = e.target.checked; render(); };
+  document.getElementById("hideApplied").onchange = function(e){ filters.hideApplied = e.target.checked; render(); };
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+
+  function matches(j){
+    if(filters.tiers.size && !filters.tiers.has(j.fit_tier)) return false;
+    if(filters.sources.size && !filters.sources.has(j.source)) return false;
+    if(filters.onlyNew && !j.is_new) return false;
+    if(filters.hideApplied && state.applied[j.id] && state.applied[j.id].applied) return false;
+    if(filters.q){
+      var hay = (j.company+" "+j.title+" "+j.level+" "+(j.domains||[]).join(" ")+" "+j.source+" "+j.location).toLowerCase();
+      if(hay.indexOf(filters.q) < 0) return false;
+    }
+    return true;
+  }
+
+  function sortJobs(arr){
+    var a = arr.slice();
+    if(filters.sort === "company"){ a.sort(function(x,y){ return x.company.localeCompare(y.company,"ko"); }); }
+    else if(filters.sort === "new"){ a.sort(function(x,y){ return (y.is_new?1:0)-(x.is_new?1:0) || y.fit_score-x.fit_score; }); }
+    else { a.sort(function(x,y){ return y.fit_score-x.fit_score; }); }
+    return a;
+  }
+
+  function updateKPI(){
+    document.getElementById("kpiTotal").textContent = JOBS.length;
+    document.getElementById("kpiTop").textContent = JOBS.filter(function(j){return j.fit_tier==="최상"||j.fit_tier==="상";}).length;
+    document.getElementById("kpiNew").textContent = JOBS.filter(function(j){return j.is_new;}).length;
+    document.getElementById("kpiApplied").textContent = Object.keys(state.applied).filter(function(k){return state.applied[k]&&state.applied[k].applied;}).length;
+  }
+
+  function jobCard(j){
+    var applied = state.applied[j.id] && state.applied[j.id].applied;
+    var note = state.notes[j.id] || "";
+    var tierCls = "t-"+j.fit_tier;
+    var div = document.createElement("div");
+    div.className = "job" + (applied ? " applied" : "");
+    div.innerHTML =
+      '<div class="score">'
+        + '<div class="val '+tierCls+'">'+j.fit_score+'</div>'
+        + '<div class="tier tier-'+j.fit_tier+'">'+j.fit_tier+'</div>'
+      + '</div>'
+      + '<div class="body-col">'
+        + '<div class="j-head"><div class="j-co">'
+          + esc(j.company)
+          + (j.is_new ? ' <span class="badge-new">NEW</span>' : '')
+          + ' <span class="badge-lv">'+esc(j.level)+'</span>'
+        + '</div></div>'
+        + '<div class="j-title">'+esc(j.title)+'</div>'
+        + '<ul class="j-reasons">'+ (j.fit_reasons||[]).map(function(r){return '<li>'+esc(r)+'</li>';}).join("") +'</ul>'
+        + '<div class="j-meta">'
+          + '<span><b>출처</b> '+esc(j.source)+'</span>'
+          + '<span><b>위치</b> '+esc(j.location)+'</span>'
+          + '<span><b>경력</b> '+esc(j.exp)+'</span>'
+          + '<span><b>규모</b> '+esc(j.scale)+'</span>'
+          + '<span>'+(j.domains||[]).map(esc).join(" · ")+'</span>'
+        + '</div>'
+        + '<div class="j-foot">'
+          + '<a class="btn go" href="'+encodeURI(j.url)+'" target="_blank" rel="noopener">공고 보기 ↗</a>'
+          + '<label class="applied-toggle"><input type="checkbox" data-id="'+j.id+'" class="applyChk"'+(applied?' checked':'')+'> 지원함</label>'
+          + '<button class="note-btn" data-id="'+j.id+'">메모'+(note?' ●':'')+'</button>'
+        + '</div>'
+        + '<textarea class="note-area" data-id="'+j.id+'" placeholder="지원 메모 · 마감일 · 컨택 포인트…">'+esc(note)+'</textarea>'
+      + '</div>';
+    return div;
+  }
+
+  function render(){
+    var list = document.getElementById("list");
+    var shown = sortJobs(JOBS.filter(matches));
+    list.innerHTML = "";
+    if(!shown.length){ list.innerHTML = '<div class="empty">조건에 맞는 공고가 없습니다. 필터를 조정해 보세요.</div>'; }
+    shown.forEach(function(j){ list.appendChild(jobCard(j)); });
+
+    // wire applied checkboxes
+    list.querySelectorAll(".applyChk").forEach(function(chk){
+      chk.onchange = function(){
+        var id = chk.dataset.id;
+        if(chk.checked){ state.applied[id] = {applied:true, applied_at:new Date().toISOString().slice(0,10)}; }
+        else { delete state.applied[id]; }
+        saveState(state); updateKPI(); render();
+      };
+    });
+    // wire note toggles
+    list.querySelectorAll(".note-btn").forEach(function(btn){
+      btn.onclick = function(){
+        var ta = list.querySelector('.note-area[data-id="'+btn.dataset.id+'"]');
+        ta.classList.toggle("open"); if(ta.classList.contains("open")) ta.focus();
+      };
+    });
+    list.querySelectorAll(".note-area").forEach(function(ta){
+      ta.onblur = function(){
+        var id = ta.dataset.id; var v = ta.value.trim();
+        if(v){ state.notes[id] = v; } else { delete state.notes[id]; }
+        saveState(state);
+        var btn = list.querySelector('.note-btn[data-id="'+id+'"]'); if(btn) btn.textContent = "메모"+(v?" ●":"");
+      };
+    });
+
+    document.getElementById("countLine").innerHTML = '표시 <b>'+shown.length+'</b>건 / 전체 '+JOBS.length+'건';
+    updateKPI();
+  }
+
+  updateKPI();
+  render();
+})();
+</script>
+</body>
+</html>
