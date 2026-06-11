@@ -181,7 +181,7 @@
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script>
 (function(){
@@ -375,7 +375,7 @@
     var next = Object.assign({}, cur, patch);
     state.tracking[id] = next;
     saveLocalTracking();
-    if(state.admin && state.db){ state.db.ref("jobradar/tracking/"+id).set(next).catch(function(e){ console.warn("track write fail",e); }); }
+    if(state.admin && state.db){ state.db.collection("jobradar_tracking").doc(id).set(next, {merge:true}).catch(function(e){ console.warn("track write fail",e); }); }
   }
 
   // events
@@ -408,25 +408,26 @@
 
   // Firebase
   var fbReady=false;
-  try{ if(window.firebase && firebase.initializeApp){ firebase.initializeApp(FIREBASE_CONFIG); state.db=firebase.database(); fbReady=true; } }catch(e){ console.warn("firebase init fail", e); }
+  try{ if(window.firebase && firebase.initializeApp){ firebase.initializeApp(FIREBASE_CONFIG); state.db=firebase.firestore(); fbReady=true; } }catch(e){ console.warn("firebase init fail", e); }
   function setStatus(kind){
     var pill=document.getElementById("statusPill"), txt=document.getElementById("statusText");
     pill.classList.remove("live","snap");
     if(kind==="live"){ pill.classList.add("live"); txt.textContent="LIVE"; } else { pill.classList.add("snap"); txt.textContent="스냅샷"; }
   }
   if(fbReady){
-    state.db.ref("jobradar/jobs").on("value", function(s){
-      var v=s.val();
-      if(v){
-        var list = Array.isArray(v)? v.slice() : Object.keys(v).map(function(k){return v[k];});
-        list = list.filter(function(x){return x && x.id && x.title;});
-        if(list.length){ state.jobs=list; state.source="live"; setStatus("live"); renderAll(); }
-      }
+    // 공고 목록 (Firestore: jobradar_jobs 컬렉션, 실시간)
+    state.db.collection("jobradar_jobs").onSnapshot(function(qs){
+      var list=[]; qs.forEach(function(d){ list.push(d.data()); });
+      list=list.filter(function(x){return x && x.id && x.title;});
+      if(list.length){ state.jobs=list; state.source="live"; setStatus("live"); renderAll(); }
     }, function(){ setStatus("snap"); });
-    state.db.ref("jobradar/meta/last_collected").on("value", function(s){ if(s && s.val()){ state.lastCollected=s.val(); document.getElementById("lastCollected").textContent=s.val(); } });
-    state.db.ref("jobradar/tracking").on("value", function(s){
-      var v=s.val(); if(!v) return;
-      Object.keys(v).forEach(function(k){ state.tracking[k]=Object.assign({}, state.tracking[k], v[k]); });
+    // 수집일 (jobradar_meta/state)
+    state.db.collection("jobradar_meta").doc("state").onSnapshot(function(d){
+      var v=d.exists?d.data():null; if(v && v.last_collected){ state.lastCollected=v.last_collected; document.getElementById("lastCollected").textContent=v.last_collected; }
+    });
+    // 지원여부·메모 (jobradar_tracking 컬렉션, 실시간 병합)
+    state.db.collection("jobradar_tracking").onSnapshot(function(qs){
+      qs.forEach(function(d){ state.tracking[d.id]=Object.assign({}, state.tracking[d.id], d.data()); });
       saveLocalTracking(); renderStats(); renderList();
     });
   } else { setStatus("snap"); }
